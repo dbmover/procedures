@@ -1,0 +1,13 @@
+{
+    "name": "dbmover/procedures",
+    "description": "Dbmover plugin to (re)create procedures",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marijn Ophorst",
+            "email": "marijn@monomelodies.nl"
+        }
+    ],
+    "require": {}
+}
