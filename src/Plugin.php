@@ -15,25 +15,16 @@ class Plugin extends Core\Plugin
     const REGEX = '@^CREATE (PROCEDURE|FUNCTION).*?^END;$@ms';
     const DROP_ROUTINE_SUFFIX = '()';
 
-    protected $procedures = [];
-
     public function __invoke(string $sql) : string
     {
         if (preg_match_all(static::REGEX, $sql, $procedures, PREG_SET_ORDER)) {
             foreach ($procedures as $procedure) {
-                $this->procedures[] = $procedure[0];
+                $this->defer($procedure[0]);
                 $sql = str_replace($procedure[0], '', $sql);
             }
         }
         $this->dropExistingProcedures();
         return $sql;
-    }
-
-    public function __destruct()
-    {
-        foreach ($this->procedures as $procedure) {
-            $this->loader->addOperation($procedure);
-        }
     }
 
     protected function dropExistingProcedures()
