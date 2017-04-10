@@ -15,15 +15,17 @@ class Plugin extends Core\Plugin
     const REGEX = '@^CREATE (PROCEDURE|FUNCTION).*?^END;$@ms';
     const DROP_ROUTINE_SUFFIX = '()';
 
+    public $description = 'Dropping existing procedures...';
+
     public function __invoke(string $sql) : string
     {
+        $this->dropExistingProcedures();
         if (preg_match_all(static::REGEX, $sql, $procedures, PREG_SET_ORDER)) {
             foreach ($procedures as $procedure) {
-                $this->defer($procedure[0]);
+                $this->addOperation($procedure[0]);
                 $sql = str_replace($procedure[0], '', $sql);
             }
         }
-        $this->dropExistingProcedures();
         return $sql;
     }
 
@@ -40,7 +42,7 @@ class Plugin extends Core\Plugin
         $stmt->execute();
         while (false !== ($routine = $stmt->fetch(PDO::FETCH_ASSOC))) {
             if (!$this->loader->shouldBeIgnored($routine)) {
-                $this->loader->addOperation(sprintf(
+                $this->addOperation(sprintf(
                     "DROP %s %s%s",
                     $routine['routinetype'],
                     $routine['routinename'],
@@ -48,6 +50,12 @@ class Plugin extends Core\Plugin
                 ));
             }
         }
+    }
+
+    public function __destruct()
+    {
+        $this->description = 'Recreating procedures...';
+        parent::__destruct();
     }
 }
 
