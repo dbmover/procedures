@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "dbmover/core": "^0.6.1"
+        "dbmover/core": "^0.6.2"
     },
     "autoload": {
         "psr-4": {
