@@ -22,7 +22,7 @@ class Plugin extends Core\Plugin
         $this->dropExistingProcedures();
         if (preg_match_all(static::REGEX, $sql, $procedures, PREG_SET_ORDER)) {
             foreach ($procedures as $procedure) {
-                $this->addOperation($procedure[0]);
+                $this->defer($procedure[0]);
                 $sql = str_replace($procedure[0], '', $sql);
             }
         }
