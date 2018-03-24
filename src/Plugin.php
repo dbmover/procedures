@@ -15,8 +15,13 @@ class Plugin extends Core\Plugin
     const REGEX = '@^CREATE (PROCEDURE|FUNCTION).*?^END;$@ms';
     const DROP_ROUTINE_SUFFIX = '()';
 
+    /** @var string */
     public $description = 'Dropping existing procedures...';
 
+    /**
+     * @param string $sql
+     * @return string
+     */
     public function __invoke(string $sql) : string
     {
         $this->dropExistingProcedures();
@@ -29,7 +34,10 @@ class Plugin extends Core\Plugin
         return $sql;
     }
 
-    protected function dropExistingProcedures()
+    /**
+     * @return void
+     */
+    protected function dropExistingProcedures() : void
     {
         $stmt = $this->loader->getPdo()->prepare(sprintf(
             "SELECT
@@ -52,6 +60,9 @@ class Plugin extends Core\Plugin
         }
     }
 
+    /**
+     * @return void
+     */
     public function __destruct()
     {
         $this->description = 'Recreating procedures...';
