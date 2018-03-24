@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5d996bd62fdebcb06ee946f90680a7a9",
-    "content-hash": "e39c4c3b444989ff068d29b191b1033f",
+    "hash": "e05f3dac0be3bf9c00daae95449dcb4c",
+    "content-hash": "d3f13d604dfa91941254d7858ee52d68",
     "packages": [
         {
             "name": "dbmover/core",
-            "version": "0.7.0",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dbmover/core.git",
-                "reference": "b94862d0a6f24ff7be859b3187cddbe52513fcc3"
+                "reference": "65ebb5fb410080f1a533892f86fe795923d74d28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dbmover/core/zipball/b94862d0a6f24ff7be859b3187cddbe52513fcc3",
-                "reference": "b94862d0a6f24ff7be859b3187cddbe52513fcc3",
+                "url": "https://api.github.com/repos/dbmover/core/zipball/65ebb5fb410080f1a533892f86fe795923d74d28",
+                "reference": "65ebb5fb410080f1a533892f86fe795923d74d28",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 }
             ],
             "description": "PHP-based database versioning tool, core components",
-            "time": "2018-03-24 07:05:17"
+            "time": "2018-03-24 17:47:12"
         },
         {
             "name": "monomelodies/kingconf",
